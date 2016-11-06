@@ -1,0 +1,17 @@
+Welcome to Redux Adventures — automated workshop for the Redux Library.
+Redux Adventures workshop is based on workshopper and inspired by stream-adventure by @substack and @maxogden.
+
+API docs:
+
+http://redux.js.org/
+
+Redux Github Docs:
+
+https://github.com/reactjs/redux/tree/master/docs
+
+
+Issues? Suggestions? Feedback?
+
+https://github.com/Code-Craftsmanship-Saturdays/redux-adventures/issues
+
+Other awesome workshops: http://nodeschool.io
