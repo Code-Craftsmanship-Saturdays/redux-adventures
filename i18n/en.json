@@ -1,11 +1,8 @@
-// 20161106180454
-// https://raw.githubusercontent.com/stevekane/promise-it-wont-hurt/master/i18n/en.json
-
 {
   "title": "Redux Adventures",
-  "subtitle": "Learn to use redux and master functional programming and immutability",
+  "subtitle": "Learn to use redux and master functional programming.",
   "exercise": {
-    "create_skeleton_for_redux": "Setup Redux"
+    "getting_started": "Setup Redux"
   },
   "common": {
     "exercise": {
