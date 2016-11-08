@@ -39,35 +39,6 @@
       "fail": {
         "thenBoth": "You didn’t use then method with both callbacks specified"
       }
-    },
-    "shortcuts": {
-      "fail": {
-        "funcOr": "You didn’t use {{{func1}}} or {{{func2}}}"
-      }
-    },
-    "promise_after_promise": {
-      "pass": {
-        "returnedPromise": "A promise returned from first().then"
-      },
-      "fail": {
-        "returnedPromise": "You did not return a promise from first().then, but instead you returned {{{returned}}}"
-      }
-    },
-    "values_and_promises": {
-      "pass": {
-        "returnedSync": "A value returned from attachTitle()"
-      },
-      "fail": {
-        "returnedSync": "You returned a promise from attachTitle(). Return a value instead."
-      }
-    },
-    "multiple_promises": {
-      "pass": {
-        "inAll": "You called then from function all"
-      },
-      "fail": {
-        "inAll": "You did not call then from function all"
-      }
     }
   }
 }
