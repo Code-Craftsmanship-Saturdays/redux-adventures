@@ -23,6 +23,7 @@
   "homepage": "https://github.com/jbelmont/redux-adventures#readme",
   "dependencies": {
     "redux": "^3.6.0",
+    "semver": "^5.3.0",
     "workshopper": "^2.7.0",
     "workshopper-exercise": "^2.7.0",
     "workshopper-timer": "^1.0.0"
@@ -30,5 +31,8 @@
   "devDependencies": {
     "faithful-exec": "^0.1.0",
     "mocha": "^3.1.2"
+  },
+  "engines": {
+    "requiredNodeVersion": ">=6"
   }
 }
