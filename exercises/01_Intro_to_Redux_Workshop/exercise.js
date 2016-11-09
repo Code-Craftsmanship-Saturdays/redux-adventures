@@ -19,38 +19,11 @@ exercise = comparestdout(exercise);
 // and wrap Promise with hooks used to check if the user used Promises as
 // instructed
 exercise = wrappedexec(exercise, 'all');
-exercise.wrapModule(require.resolve('./wrap.js'));
 
 // check if hooks have been activated
 exercise.addVerifyProcessor(function (callback) {
   let __ = this.__;
   let ok = true;
-
-  if (exercise.wrapData.usedPromise) {
-    this.emit('pass', __('pass.letr'));
-  } else {
-    this.emit('fail', __('fail.letr'));
-    ok = false;
-  }
-
-  if (exercise.wrapData.usedFulfill) {
-    this.emit('pass', __('pass.func', { func: 'fulfill' }));
-  } else {
-    ok = false;
-    this.emit('fail', __('fail.func', { func: 'fulfill' }));
-  }
-
-  if (exercise.wrapData.usedPrototypeThenAfterFulfill) {
-    this.emit('pass', __('pass.funcAfter', { before: 'fulfill', after: 'then' }));
-  } else {
-    ok = false;
-
-    if (exercise.wrapData.usedPrototypeThen) {
-      this.emit('fail', __('fail.funcAfter', { before: 'fulfill', after: 'then' }));
-    } else {
-      this.emit('fail', __('fail.func', { func: 'then' }));
-    }
-  }
 
   process.nextTick(function () {
     callback(null, ok);
