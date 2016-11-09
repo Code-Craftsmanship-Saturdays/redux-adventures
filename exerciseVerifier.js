@@ -13,23 +13,26 @@ const {
     partialApply
 } = require('./partialApplication');
 
-let isThisRedux = _.flowRight(isProbablyReduxInstance, _.sample);
+const isThisRedux = partialApply(
+  isProbablyReduxInstance, 
+  Array.prototype.slice.apply(this, () => Math.floor(Math.random() * items.length))
+);
 
 module.exports = function (tests, testRun, options = {}) {
   const exercise = partialApply(execute, filecheck)(exerciser());
 
-  let before = options.before || noop;
-  let after = options.after || noop;
+  const before = options.before || noop;
+  const after = options.after || noop;
 
   exercise.addProcessor(function (mode, callback) {
-    var isRunMode = mode === 'run';
-    var passed = true;
-    var usersolution;
+    const isRunMode = mode === 'run';
+    const passed = true;
+    let usersolution;
 
     try {
       usersolution = require(path.resolve(process.cwd(), this.args[0]));
     } catch (e) {
-      var message = (e.code !== 'MODULE_NOT_FOUND'
+      const message = (e.code !== 'MODULE_NOT_FOUND'
                       ? 'Could not find your file. Make sure the path is correct.'
                       : 'You need to install all of the dependencies you are using in your solution (e.g. "npm install redux")');
 
@@ -37,31 +40,33 @@ module.exports = function (tests, testRun, options = {}) {
       return callback(null, false);
     }
 
-    if(typeof usersolution !== 'function'){
+    if (typeof usersolution !== 'function'){
       this.emit('fail', 'You should always return a function using module.exports.');
       return callback(null, false);
     }
 
-    if(isRunMode) {
+    if (isRunMode) {
       return run(this, usersolution, testRun, callback);
     }
 
-    var whenAllTestsDone = _.after(_.size(tests), function() {
+    const whenAllTestsDone = _.after(Array.prototype.slice.call(this, tests), () => {
       callback(null, passed);
     });
 
-    _.forEach(tests, (function (test, testTitle) {
-      run(this, usersolution, test, testTitle, function (err, success) {
-        if (!success) passed = false;
+    Array.prototype.slice.call(tests).map((test, testTitle) => {
+      run(this, usersolution, test, testTitle, (err, success) => {
+        if (!success) {
+          passed = false;
+        } 
         whenAllTestsDone();
       });
-    }).bind(this));
+    });
   });
 
   return exercise;
 
   function run (exercise, usersolution, test, testTitle, callback) {
-    var stream;
+    const stream;
 
     if (typeof testTitle === 'function') {
       callback = testTitle;
@@ -81,7 +86,7 @@ module.exports = function (tests, testRun, options = {}) {
     }
 
     before(test, stream, exercise);
-    test.expect(stream, exercise, function (success) {
+    test.expect(stream, exercise, success => {
       after(test, stream, exercise);
 
       if (!success) {
