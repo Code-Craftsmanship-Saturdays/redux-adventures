@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+require('./exerciseVerifier')();
+
 const Workshopper = require('workshopper');
 const {join}        = require('path');
 

@@ -10,16 +10,16 @@ let filecheck = require('workshopper-exercise/filecheck');
 let execute = require('workshopper-exercise/execute');
 
 const {
-    partialApply
+    partialApplicationFromRight
 } = require('./partialApplication');
 
-const isThisRedux = partialApply(
+const isThisRedux = partialApplicationFromRight(
   isProbablyReduxInstance, 
   Array.prototype.slice.apply(this, () => Math.floor(Math.random() * items.length))
 );
 
 module.exports = function (tests, testRun, options = {}) {
-  const exercise = partialApply(execute, filecheck)(exerciser());
+  const exercise = partialApplicationFromRight(execute, filecheck)(exerciser());
 
   const before = options.before || noop;
   const after = options.after || noop;
@@ -66,7 +66,7 @@ module.exports = function (tests, testRun, options = {}) {
   return exercise;
 
   function run (exercise, usersolution, test, testTitle, callback) {
-    const stream;
+    let stream;
 
     if (typeof testTitle === 'function') {
       callback = testTitle;
