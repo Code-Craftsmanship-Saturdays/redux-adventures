@@ -33,6 +33,6 @@
     "mocha": "^3.1.2"
   },
   "engines": {
-    "requiredNodeVersion": ">=6"
+    "node": ">=6"
   }
 }
